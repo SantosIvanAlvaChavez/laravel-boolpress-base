@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="container mb-5">
+        @if (session('post-deleted'))
+            <div class="alert alert-success">
+                Post '{{ session('post-deleted') }}' has been deleted successfully.
+            </div>
+        @endif
+
+
         <h1>BLOG ARCHIVE</h1>
 
         @forelse ($posts as $post)
@@ -15,5 +22,7 @@
         @empty
             <p>No post found. Go and <a href={{ route('posts.create') }}>create a new one</a> </p>
         @endforelse
+
+        {{ $posts->links() }}
     </div>
 @endsection
